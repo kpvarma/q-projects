@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
 
+  # Validations
   extend UrlValidator
 
-  # Validations
   validates :name,
     presence: true,
     length: {:minimum => 2, :maximum => 250 }

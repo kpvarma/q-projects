@@ -3,11 +3,7 @@
 <div class="panel panel-default">
   <div class="panel-body" style="height:auto;">
     <div class="pull-left" style="width:30%;">
-      <%
-        redirect_url = admin_project_path(@project)
-        change_picture_url = upload_image_link(@project, redirect_url, :logo)
-      %>
-      <%= theme_image(@project, redirect_url, :logo, "logo.image.url", change_picture_url: change_picture_url) %>
+      <%= edit_image(@project, "logo.image.url", upload_image_link(@project, :logo)) %>
     </div>
     <div class="pull-left ml-10" style="width:65%;">
       <%= theme_panel_heading(@project.name) %>

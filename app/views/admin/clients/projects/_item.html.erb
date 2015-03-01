@@ -9,7 +9,7 @@
   <div class='cl-10'></div>
   <% project.users.each do |user| %>
     <div class="pull-left ml-10">
-      <%= theme_user_image(user, width: 30) %>
+      <%= display_user_image(user, "thumb_url", width: "60px", popover: true) %>
     </div>
   <% end %>
   <div class="cl"></div>

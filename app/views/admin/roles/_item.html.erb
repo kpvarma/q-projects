@@ -2,7 +2,8 @@
 <%# describes about each user %>
 <div class="pull-left m-10">
 
-  <%= theme_user_image(role.user, role: role, width: 60) %>
+  <%#= theme_user_image(role.user, role: role, width: 60) %>
+  <%= display_user_image(role.user, "thumb_url", width: "60px", popover: role.name) %>
 
   <%#= link_to user.name, "#", :class=>"text-color-blue fs-16 mt-10" %>
   <!-- <div class="text-color-gray fs-14"><%#= role.name %></div> -->

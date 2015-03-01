@@ -1,0 +1,14 @@
+<%= content_for :javascript_footer do %>
+  <script type="text/javascript">
+
+    var heading = "Crop Image";
+    var bodyContent = "<%= escape_javascript(render(:partial=>"crop_form")) %>";
+    this.parent.showModal(heading, bodyContent);
+    this.parent.cropImage("form_crop_photo");
+
+    this.parent.$(".<%= @resource.id %>-poodle-large-image").attr("src", "<%= @image.image.large.url %>");
+    this.parent.$(".<%= @resource.id %>-poodle-thumb-image").attr("src", "<%= @image.image.medium.url %>");
+    this.parent.$(".<%= @resource.id %>-poodle-medium-image").attr("src", "<%= @image.image.thumb.url %>");
+
+  </script>
+<% end %>

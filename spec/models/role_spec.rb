@@ -9,7 +9,7 @@ RSpec.describe Role, :type => :model do
   end
 
   context "Validations" do
-    it {should ensure_inclusion_of(:name).in_array(Role::LIST) }
+    it {should validate_inclusion_of(:name).in_array(Role::LIST) }
   end
 
   context "Associations" do

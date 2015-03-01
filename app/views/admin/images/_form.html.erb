@@ -1,19 +1,13 @@
-
-<%# Renders a partial which is used to create a new photo %>
-
 <%= form_for(@image, :as => :image,
-            :url => (@image.new_record? ? admin_images_path : admin_image_path),
+            :url => (@image.new_record? ? main_app.admin_images_path : main_app.admin_image_path),
             :method => (@image.new_record? ? :post : :put),
-            :html => {:id=>"form_photo",
-              :class=>"mb-0 form-horizontal",
-              :role => "form",
-              :multipart => true}) do |f| %>
+            :html => {:id=>"form_photo", :class=>"mb-0 form-horizontal", :multipart => true, :target => "iframe_photo"}) do |f| %>
 
   <div class="modal-body">
 
     <%= @image.errors[:base].to_sentence %>
 
-    <%= hidden_field_tag :faction, @image.new_record? ? admin_images_path : admin_image_path(@image) %>
+    <%= hidden_field_tag :faction, @image.new_record? ? main_app.admin_images_path : main_app.admin_image_path(@image) %>
     <%= hidden_field_tag :fmethod, @image.new_record? ? "POST" : "PUT" %>
 
     <%= hidden_field_tag :imageable_id, params[:imageable_id] %>
@@ -21,23 +15,12 @@
     <%= hidden_field_tag :redirect_url, params[:redirect_url] %>
     <%= hidden_field_tag :image_type, params[:image_type] %>
 
-    <div class="add-photos-path ml-40 mt-20 mb-20">
+    <div class="add-photos-path">
 
       <div class="row">
-        <%= image_tag @image.image.present? ?
-                    (@image.image_url) :
-                    ('http://placehold.it/220x220'), :alt => '', :id => "new_photos", :class=>"img-thumbnail" %>
-      </div>
-      <div class="row">
-        <div class="pull-left mr-60">
-          <%= f.label :image, "Click Here to Browse", :class => 'upload_image btn btn-xs btn-default label-upload-image mt-10'  %>
-          <%= f.file_field :image, :style => 'display:none;', :onChange => 'preview_image(this, "new_photos", 420)', :class => 'jQueryBrowseImg' %>
+        <div class="col-md-12">
+          <%= theme_form_field(@image, :image, html_options: {type: 'file'}, label: "Upload a new Image", param_name: "image") %>
         </div>
-        <div class="pull-left">
-          <%= f.hidden_field :image_cache %>
-          <%#= link_to_remove_fields "x", f %>
-        </div>
-        <div class="cl"></div>
       </div>
 
     </div>
@@ -53,7 +36,6 @@
 
   </div>
 
-	<div class="cl-10"></div>
+  <div class="cl-10"></div>
 
 <% end %>
-

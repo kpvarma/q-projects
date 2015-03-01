@@ -1,0 +1,10 @@
+<%= content_for :javascript_footer do %>
+  <script type="text/javascript">
+
+    var heading = "Crop Image";
+    var bodyContent = "<%= escape_javascript(render(:partial=>"crop_form")) %>";
+    this.parent.showModal(heading, bodyContent);
+    this.parent.cropImage("form_crop_photo");
+
+  </script>
+<% end %>

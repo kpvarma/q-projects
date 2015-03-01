@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require poodle/bootstrap
-//= require poodle/common
+//= require poodle/cropper
 //= require poodle/utilities
-//= require poodle/photo_upload
 //
 // For jQery validations - http://jqueryvalidation.org/documentation/
 //= require jquery.validate

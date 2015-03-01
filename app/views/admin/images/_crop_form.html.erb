@@ -1,0 +1,44 @@
+<%= form_for(@image, :as => :image,
+            :url => main_app.crop_admin_image_path(@image),
+            :method => :put,
+            :html => {:id=>"form_crop_photo", :class=>"mb-0 form-horizontal", :multipart => true, :target => "iframe_crop_photo"}) do |f| %>
+
+  <div class="modal-body">
+
+    <%= @image.errors[:base].to_sentence %>
+
+    <%= hidden_field_tag :imageable_id, params[:imageable_id] %>
+    <%= hidden_field_tag :imageable_type, params[:imageable_type] %>
+    <%= hidden_field_tag :redirect_url, params[:redirect_url] %>
+    <%= hidden_field_tag :image_type, params[:image_type] %>
+
+    <% %w[x y w h].each do |i| %>
+      <%= f.hidden_field "crop_#{i}", class: "crop_#{i}" %>
+    <% end %>
+
+    <div class="add-photos-path">
+      <div class="row">
+        <%= image_tag @image.image.present? ?
+                  (@image.image_url) :
+                  ('http://placehold.it/220x220'), :alt => '', :id => "new_photos", :class=>"img-thumbnail" %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="pull-right">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      <%= submit_tag "Crop Image", "data-reset-text"=>"Crop Image", "data-loading-text"=>"Cropping ...", :class=>"btn btn-primary ml-10" %>
+    </div>
+
+  </div>
+
+  <div class="cl-10"></div>
+
+<% end %>
+
+<!-- when the form is submitted, the server response will appear in this iframe -->
+<iframe id="iframe_crop_photo" name="iframe_crop_photo" width="100%" style="display:none;">
+</iframe>
+

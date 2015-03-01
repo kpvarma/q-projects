@@ -29,7 +29,11 @@ QProject::Application.routes.draw do
 
     resources :clients
     resources :link_types
-    resources :images
+    resources :images do
+      member do
+        put :crop
+      end
+    end
 
   end
 

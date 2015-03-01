@@ -1,8 +1,8 @@
 class WelcomeController < ApplicationController
+
   layout 'poodle/public'
   before_filter :set_navs
 
-  # GET /
   def home
   end
 
